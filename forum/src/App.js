@@ -1,8 +1,13 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import 'antd/dist/antd.css';
+
+import PersonalCenter from './component/PersonalCenter/PersonalCenter.js'
 
 function App() {
   return (
+    <PersonalCenter/>
+    /*
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -18,7 +23,7 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </div>*/
   );
 }
 
