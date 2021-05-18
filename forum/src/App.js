@@ -2,11 +2,11 @@
 import './App.css';
 import 'antd/dist/antd.css';
 
-import PersonalCenter from './component/PersonalCenter/PersonalCenter.js'
+import PostDetails from './componnets/PostDetails/PostDetails.js'
 
 function App() {
   return (
-    <PersonalCenter/>
+    <PostDetails/>
     /*
     <div className="App">
       <header className="App-header">
