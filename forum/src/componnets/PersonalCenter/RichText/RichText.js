@@ -39,6 +39,7 @@ export default class RichText extends React.Component {
       editorContent,
     });
   };
+  
   render() {
     //editorContent
     const { editorState } = this.state;

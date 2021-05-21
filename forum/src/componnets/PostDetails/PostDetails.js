@@ -15,12 +15,13 @@ import {User} from './User.js'
 
 
 export default class PostDetails extends Component {
-    //static propTypes = {
-    // prop: PropTypes
-    //}
+    static propTypes = {
+     postId: PropTypes.number
+    }
     constructor(props) {
         super(props)
         this.state = {
+            postId:this.props.location.state,
             showFrmReport: false,
             reviewedName: '',
             reviewedId: 0,
@@ -31,6 +32,7 @@ export default class PostDetails extends Component {
             post: {},
             comments: []
         }
+        console.log(this.props)
     }
 
     async addLike() {
@@ -59,14 +61,14 @@ export default class PostDetails extends Component {
     }
 
     async getPost() {
-        const response = await axios(`https://localhost:5001/api/Comment/getPost/${1}`)
+        const response = await axios(`https://localhost:5001/api/Comment/getPost/${this.state.postId}`)
         const post = response.data
         this.getLike(post.id)
         this.setState({ post: post, likes: post.likes, reviewedName: post.authorName, reviewedId: post.authorId })
     }
 
     async getComments() {
-        const response = await axios(`https://localhost:5001/api/Comment/getComments/${1}`)
+        const response = await axios(`https://localhost:5001/api/Comment/getComments/${this.state.postId}`)
         const comments = response.data
         this.setState({ comments: comments })
     }
