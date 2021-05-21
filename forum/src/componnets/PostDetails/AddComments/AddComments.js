@@ -131,7 +131,7 @@ export default class AddComments extends Component {
                 {comments.length > 0 && this.CommentList(comments)}
                 <Comment
                     className='comment'
-                    avatar={
+                    avatar={     
                         <Avatar
                             src={User.avatar}
                             alt={User.userName}
