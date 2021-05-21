@@ -1,9 +1,9 @@
 import React from "react";
 
-class Editor extends React.Component {
+class AddPost extends React.Component {
   render() {
     return <div></div>;
   }
 }
 
-export default Editor;
+export default AddPost;

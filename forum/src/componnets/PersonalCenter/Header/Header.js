@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import PersonalCenter from "../PersonalCenter.js";
 import './Header.css'
 /*------------------------------------------*/
+
+//需要与后端交互 动态的显示用户的个人信息（呢称）
 export default class Header extends Component {
   render() {
     return (

@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import { List, Avatar, Space } from "antd";
+import {Link} from 'react-router-dom'
+import axios from 'axios'
 import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
 
-const listData = [];
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: "https://ant.design",
-    title: `ant design part ${i}`,
-    avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-    description:
-      "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-    content:
-      "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
-  });
-}
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
+//与后端连接逻辑未写 如果用户没有创建帖子，将会显示postempty界面
 export default class PostAll extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      posts:[]
+    }
+  }
+  async getPosts(){
+     var response=await axios("https://localhost:5001/api/PersonalCenter/getPosts")
+     var posts=response.data
+     this.setState({posts:posts})
+  }
+
+  async componentDidMount(){
+    this.getPosts()
+  }
   render() {
     return (
       <List
@@ -30,47 +30,19 @@ export default class PostAll extends Component {
           onChange: (page) => {
             console.log(page);
           },
-          pageSize: 3,
+          pageSize: 5,
         }}
-        dataSource={listData}
+        dataSource={this.state.posts}
         footer={
-          <div>
-            <b>ant design</b> footer part
-          </div>
+          null
         }
         renderItem={(item) => (
           <List.Item
             key={item.title}
-            actions={[
-              <IconText
-                icon={StarOutlined}
-                text="156"
-                key="list-vertical-star-o"
-              />,
-              <IconText
-                icon={LikeOutlined}
-                text="156"
-                key="list-vertical-like-o"
-              />,
-              <IconText
-                icon={MessageOutlined}
-                text="2"
-                key="list-vertical-message"
-              />,
-            ]}
-            extra={
-              <img
-                width={272}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-            }
           >
-            <List.Item.Meta
-              avatar={<Avatar src={item.avatar} />}
-              title={<a href={item.href}>{item.title}</a>}
-              description={item.description}
-            />
+             <Avatar src={item.avatar} />
+            <span>{item.postDate}</span>
+            <span><Link to="/postDetalis"/>{item.title}</span>
             {item.content}
           </List.Item>
         )}

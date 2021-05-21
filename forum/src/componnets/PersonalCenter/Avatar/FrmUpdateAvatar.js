@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import AvatarEditor from "react-avatar-editor";
 import { Modal, Divider, Slider } from "antd";
+import { withRouter } from "react-router";
 
+//再鼠标移动到头像时 显示“更换头像”的文字，点击头像时，会显示一个窗口进行更换头像功能
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
   reader.addEventListener("load", () => callback(reader.result));
   reader.readAsDataURL(img);
 };
 
-export default class FrmUpdateAvatar extends Component {
+class FrmUpdateAvatar extends Component {
   state = {
     // 编辑头像
     editImg: false,
@@ -83,3 +85,4 @@ export default class FrmUpdateAvatar extends Component {
     );
   }
 }
+export default withRouter(FrmUpdateAvatar);
